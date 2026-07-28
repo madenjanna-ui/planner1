@@ -1,13 +1,10 @@
-// MaDenFlow app.js
-
 console.log("MaDenFlow запущен 🚀");
 
 
 const planner = document.getElementById("planner");
 const weekTitle = document.getElementById("weekTitle");
 
-const toggleButton =
-document.getElementById("toggleWeekBtn");
+
 const weekDays = [
     "Понедельник",
     "Вторник",
@@ -20,7 +17,9 @@ const weekDays = [
 
 
 let currentDate = new Date();
+
 let weekCollapsed = false;
+
 
 // выбранный день для добавления задачи
 let selectedDate = null;
