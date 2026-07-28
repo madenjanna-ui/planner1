@@ -1092,10 +1092,9 @@ to {
 
     grid-template-columns:1fr 1fr;
 
-    gap:6px 10px;
+    gap:8px;
 
 }
-
 
 .tasks.two-columns .task{
 
