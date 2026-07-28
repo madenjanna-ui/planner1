@@ -23,7 +23,7 @@ const weekDays = [
 
 
 let currentDate = new Date();
-
+let weekCollapsed = false;
 
 // выбранный день для добавления задачи
 let selectedDate = null;
@@ -182,11 +182,12 @@ function renderWeek(){
 
     }
 
-
-
-    activateDays();
+activateDays();
 
 updateDayStatus();
+
+applyWeekState();
+
 }
 
 
@@ -442,7 +443,19 @@ document
 
 
 };
+document
+.getElementById("toggleWeekBtn")
+.onclick=function(){
 
+
+    weekCollapsed =
+    !weekCollapsed;
+
+
+    applyWeekState();
+
+
+};
 
 
 
@@ -555,4 +568,38 @@ window.addEventListener("scroll",()=>{
     }
 
 });
+function applyWeekState(){
+
+    document
+    .querySelectorAll(".day-content")
+    .forEach(content=>{
+
+
+        if(weekCollapsed){
+
+            content.classList.add("hidden");
+
+        }
+        else{
+
+            content.classList.remove("hidden");
+
+        }
+
+
+    });
+
+
+    let button =
+    document.getElementById("toggleWeekBtn");
+
+
+    if(button){
+
+        button.textContent =
+        weekCollapsed ? "▲" : "▼";
+
+    }
+
+}
 renderWeek();
