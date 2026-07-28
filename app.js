@@ -1,543 +1,1059 @@
-console.log("MaDenFlow запущен 🚀");
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
 
 
-const planner = document.getElementById("planner");
-const weekTitle = document.getElementById("weekTitle");
+body {
+
+    font-family: 'Nunito', sans-serif;
+
+}
+/* =================================
+   MaDenFlow Glass Theme
+================================= */
 
 
-const weekDays = [
-    "Понедельник",
-    "Вторник",
-    "Среда",
-    "Четверг",
-    "Пятница",
-    "Суббота",
-    "Воскресенье"
-];
+* {
 
+    box-sizing:border-box;
 
-let currentDate = new Date();
-
-let selectedDate = null;
-
-let selectedTask = null;
+}
 
 
 
-
-function getMonday(date){
-
-    let d = new Date(date);
-
-    let day = d.getDay();
+body {
 
 
-    if(day === 0){
-        day = 7;
+    margin:0;
+
+
+    min-height:100vh;
+
+
+
+    font-family:
+
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #dbeafe,
+        #f5f3ff,
+        #e0f2fe
+    );
+
+
+
+    color:#1f2937;
+
+
+}
+
+
+
+
+
+
+/* ==========================
+   HEADER
+========================== */
+
+.glass-header {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 10;
+
+    padding: 10px 15px;
+
+
+    background:
+    rgba(255,255,255,0.35);
+
+
+    backdrop-filter:
+    blur(20px);
+
+
+    -webkit-backdrop-filter:
+    blur(20px);
+
+
+    border-bottom:
+    1px solid rgba(255,255,255,0.6);
+
+}
+
+
+
+
+
+
+.logo{
+
+    text-align:center;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    margin-bottom:6px;
+
+    transition:.25s;
+
+}
+
+
+
+
+
+
+#weekTitle{
+
+    text-align:center;
+
+    font-size:15px;
+
+    margin-bottom:8px;
+
+    transition:.25s;
+
+}
+
+
+
+
+
+
+.week-nav{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    width:100%;
+
+    margin:0 auto;
+
+}
+
+
+
+.week-nav button{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:48px;
+
+    height:38px;
+
+    padding:0 14px;
+
+    border:none;
+
+    border-radius:12px;
+
+}
+
+.week-nav button:hover {
+
+
+    transform:scale(1.05);
+
+
+}
+
+
+
+
+
+
+
+/* ==========================
+   PLANNER
+========================== */
+
+
+#planner{
+
+    max-width:700px;
+
+    margin:auto;
+
+    padding:15px;
+
+    padding-bottom:110px;
+
+}
+
+
+
+
+
+
+/* ==========================
+   DAYS
+========================== */
+
+
+.day {
+
+
+    background:
+
+    rgba(255,255,255,0.45);
+
+
+
+    backdrop-filter:
+
+    blur(18px);
+
+
+
+    -webkit-backdrop-filter:
+
+    blur(18px);
+
+
+
+    border-radius:22px;
+
+
+
+    padding:15px;
+
+
+
+    margin-bottom:14px;
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,0.7);
+
+
+
+    box-shadow:
+
+    0 12px 35px rgba(0,0,0,0.08);
+
+
+
+}
+
+
+
+
+
+.day.today {
+
+
+    border:
+
+    2px solid rgba(59,130,246,0.35);
+
+
+}
+
+
+
+.day-title {
+
+
+    font-family:'Nunito', sans-serif;
+
+
+    font-size:20px;
+
+
+    font-weight:700;
+
+
+}
+
+
+.day-title {
+
+
+    width:100%;
+
+
+    border:none;
+
+
+
+    background:
+
+    rgba(255,255,255,0.35);
+
+
+
+    padding:14px;
+
+
+
+    border-radius:16px;
+
+
+
+    cursor:pointer;
+
+
+
+    text-align:left;
+
+
+
+    font-size:17px;
+
+
+}
+
+
+
+
+
+
+.day-content {
+
+
+    margin-top:15px;
+
+
+}
+
+
+
+
+
+
+.hidden {
+
+
+    display:none;
+
+
+}
+
+
+
+
+
+
+/* ==========================
+   TASKS
+========================== */
+
+
+.task {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+
+    gap:10px;
+
+
+
+    background:
+
+    rgba(255,255,255,0.45);
+
+
+
+    padding:10px;
+
+
+
+    margin-bottom:8px;
+
+
+
+    border-radius:14px;
+
+
+}
+
+
+
+
+
+.task input {
+
+
+    width:18px;
+
+
+    height:18px;
+
+
+}
+
+
+
+
+
+
+/* ==========================
+   ADD TASK
+========================== */
+
+
+.add-box {
+
+
+    display:flex;
+
+
+    gap:8px;
+
+
+    margin-top:12px;
+
+
+}
+
+
+
+
+
+.task-input {
+
+
+    flex:1;
+
+
+
+    height:38px;
+
+
+
+    border-radius:14px;
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,0.8);
+
+
+
+    background:
+
+    rgba(255,255,255,0.55);
+
+
+
+    padding:0 12px;
+
+
+
+    outline:none;
+
+
+}
+
+
+
+
+
+
+.add {
+
+
+    width:38px;
+
+
+    height:38px;
+
+
+    border-radius:12px;
+
+
+
+    border:none;
+
+
+
+    cursor:pointer;
+
+
+
+    background:
+
+    rgba(255,255,255,0.75);
+
+
+
+    font-size:24px;
+
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+}
+
+
+
+.add:hover {
+
+
+    transform:scale(1.1);
+
+
+}
+
+
+
+
+
+
+
+@media(max-width:600px){
+
+
+    .logo {
+
+        font-size:26px;
+
     }
 
 
-    d.setDate(
-        d.getDate() - day + 1
-    );
+    #planner {
 
-
-    return d;
-
-}
-
-
-
-
-
-
-
-function renderWeek(){
-
-
-    planner.innerHTML = "";
-
-
-    let today = new Date();
-
-
-    let monday = getMonday(currentDate);
-
-
-
-    let sunday = new Date(monday);
-
-
-    sunday.setDate(
-        monday.getDate() + 6
-    );
-
-
-
-    weekTitle.textContent =
-    `${monday.toLocaleDateString("ru-RU")}
-    —
-    ${sunday.toLocaleDateString("ru-RU")}`;
-
-
-
-
-
-    for(let i = 0; i < 7; i++){
-
-
-        let date = new Date(monday);
-
-
-        date.setDate(
-            monday.getDate() + i
-        );
-
-
-
-        let dateKey =
-        date.toISOString()
-        .split("T")[0];
-
-
-
-        let isToday =
-        date.toDateString()
-        === today.toDateString();
-
-
-
-
-        let section =
-        document.createElement("section");
-
-
-
-        section.className = "day";
-
-
-        section.dataset.date =
-        dateKey;
-
-
-
-
-
-  section.innerHTML = `
-
-
-<button class="day-title">
-
-${weekDays[i]}
-${date.getDate()}
-
-<span class="day-status"
-data-date="${dateKey}">
-</span>
-
-${isToday ? "⭐" : ""}
-
-</button>
-
-
-
-<div class="day-content">
-
-
-<div class="tasks"></div>
-
-
-</div>
-
-
-`;
-
-
-
-        planner.appendChild(section);
-
-
-
-
-        if(typeof loadTasks === "function"){
-
-
-            loadTasks(
-                dateKey,
-                section.querySelector(".tasks")
-            );
-
-
-        }
-
+        padding:10px;
 
     }
 
 
+}
+/* ==========================
+   Bottom Action Bar
+========================== */
 
-    activateDays();
 
-    updateDayStatus();
+.bottom-bar {
+
+    position: fixed;
+
+    bottom:0;
+
+    left:0;
+
+    right:0;
+
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+
+    padding:10px;
+
+
+    padding-bottom:
+    calc(10px + env(safe-area-inset-bottom));
+
+
+    background:
+    rgba(255,255,255,0.35);
+
+
+    backdrop-filter:
+    blur(20px);
+
+
+    -webkit-backdrop-filter:
+    blur(20px);
+
+
+    z-index:20;
+
+}
+
+.bottom-bar button {
+
+
+    width:55px;
+
+    height:55px;
+
+
+    border-radius:50%;
+
+
+    border:none;
+
+
+    cursor:pointer;
+
+
+    background:
+
+    rgba(255,255,255,0.75);
+
+
+
+    backdrop-filter:
+
+    blur(15px);
+
+
+
+    font-size:30px;
+
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+
+    transition:0.2s;
 
 
 }
 
 
 
+.bottom-bar button:hover {
 
 
+    transform:scale(1.08);
 
-
-
-
-function activateDays(){
-
-    document
-    .querySelectorAll(".day-title")
-    .forEach(button=>{
-
-
-        button.onclick=function(){
-
-
-            let day =
-            this.closest(".day");
-
-
-            selectedDate =
-            day.dataset.date;
-
-
-        };
-
-
-    });
 
 }
-            else{
+
+/* =====================
+   Task Modal
+===================== */
 
 
-                this.textContent =
-                this.textContent.replace(
-                    "▶",
-                    "▼"
-                );
+.modal {
 
 
-            }
+    position:fixed;
 
 
-        };
+    inset:0;
 
 
-    });
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    background:
+
+    rgba(0,0,0,0.25);
+
+
+    backdrop-filter:
+
+    blur(8px);
+
+
+    z-index:50;
 
 
 }
 
 
 
+.modal.hidden {
 
+    display:none;
 
+}
 
 
 
+.modal-box {
 
-// Добавить задачу
+animation:
 
-document
-.getElementById("addTaskBtn")
-.onclick=function(){
+modalOpen 0.25s ease;
+    width:90%;
 
 
-    if(!selectedDate){
+    max-width:350px;
 
-        alert("Сначала выберите день");
 
-        return;
+    padding:25px;
 
-    }
 
 
+    border-radius:25px;
 
-    document
-    .getElementById("taskModal")
-    .classList
-    .remove("hidden");
 
 
-};
+    background:
 
+    rgba(255,255,255,0.65);
 
 
 
+    backdrop-filter:
 
+    blur(20px);
 
 
 
+    box-shadow:
 
-// Сохранить задачу
-
-document
-.getElementById("saveTaskBtn")
-.onclick=function(){
-
-
-    let input =
-    document.getElementById("newTaskInput");
-
-
-
-    let text =
-    input.value.trim();
-
-
-
-    if(text===""){
-        return;
-    }
-
-
-
-    addTask(
-        selectedDate,
-        text
-    );
-
-
-
-    renderWeek();
-
-
-
-    input.value="";
-
-
-
-    document
-    .getElementById("taskModal")
-    .classList
-    .add("hidden");
-
-
-};
-
-
-
-
-
-
-
-
-
-// Отмена
-
-document
-.getElementById("cancelTaskBtn")
-.onclick=function(){
-
-
-    document
-    .getElementById("taskModal")
-    .classList
-    .add("hidden");
-
-
-};
-
-
-
-
-
-
-
-
-
-// Неделя назад
-
-document
-.getElementById("prevWeek")
-.onclick=function(){
-
-
-    currentDate.setDate(
-        currentDate.getDate()-7
-    );
-
-
-    renderWeek();
-
-
-};
-
-
-
-
-
-
-
-
-
-// Неделя вперёд
-
-document
-.getElementById("nextWeek")
-.onclick=function(){
-
-
-    currentDate.setDate(
-        currentDate.getDate()+7
-    );
-
-
-    renderWeek();
-
-
-};
-
-
-
-
-
-
-
-
-
-// Сегодня
-
-document
-.getElementById("todayBtn")
-.onclick=function(){
-
-
-    currentDate =
-    new Date();
-
-
-    renderWeek();
-
-
-};
-
-
-
-
-
-
-
-
-
-function updateDayStatus(){
-
-
-    document
-    .querySelectorAll(".day-status")
-    .forEach(status=>{
-
-
-        let date =
-        status.dataset.date;
-
-
-
-        if(!tasks[date] || tasks[date].length===0){
-
-
-            status.textContent="⚪";
-
-            return;
-
-        }
-
-
-
-        let allDone =
-        tasks[date]
-        .every(
-            item=>item.done
-        );
-
-
-
-        status.textContent =
-        allDone ? "🟢" : "🟡";
-
-
-    });
+    0 20px 50px rgba(0,0,0,0.2);
 
 
 }
 
 
 
+.modal-box input {
 
 
+    width:100%;
 
 
+    height:40px;
 
 
-// Удаление задачи
-
-document
-.getElementById("deleteTaskBtn")
-.onclick=function(){
+    border-radius:12px;
 
 
-    if(!selectedTask){
-
-        alert("Выберите задачу");
-
-        return;
-
-    }
+    border:none;
 
 
-
-    tasks[selectedTask.date]
-    .splice(
-        selectedTask.index,
-        1
-    );
+    padding:0 12px;
 
 
+    margin:15px 0;
 
-    saveTasks();
-
-
-
-    selectedTask=null;
-
-
-
-    renderWeek();
-
-
-};
-
-
-
-
-
-
-
-
-
-// Кнопка ▼ пока только проверка
-
-const toggleButton =
-document.getElementById("toggleWeekBtn");
-
-
-if(toggleButton){
-
-    toggleButton.onclick=function(){
-
-        console.log("Кнопка сворачивания нажата");
-
-    };
 
 }
 
+
+
+.modal-buttons{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.modal-buttons button{
+
+    font-family:'Nunito', sans-serif;
+
+    font-weight:700;
+
+}
+@keyframes modalOpen {
+
+
+from {
+
+    transform:scale(0.8);
+
+    opacity:0;
+
+}
+
+
+to {
+
+    transform:scale(1);
+
+    opacity:1;
+
+}
+
+
+}
+/* ==========================
+   MaDenFlow Tasks Glass
+========================== */
+
+
+.task {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:10px;
+
+
+
+    margin:8px 0;
+
+
+
+    padding:12px 15px;
+
+
+
+    background:
+
+    rgba(255,255,255,0.45);
+
+
+
+    backdrop-filter:
+
+    blur(15px);
+
+
+
+    -webkit-backdrop-filter:
+
+    blur(15px);
+
+
+
+    border-radius:18px;
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,0.5);
+
+
+
+    box-shadow:
+
+    0 8px 20px rgba(0,0,0,0.08);
+
+
+
+    transition:
+
+    0.2s;
+
+
+}
+
+
+
+.task:hover {
+
+
+    transform:
+
+    translateY(-2px);
+
+
+}
+
+
+
+.task input {
+
+
+    width:20px;
+
+    height:20px;
+
+
+}
+
+
+
+.task span {
+
+
+    font-size:18px;
+
+
+    font-weight:600;
+
+
+}
+.task.completed span {
+
+
+    text-decoration:line-through;
+
+
+    opacity:0.5;
+
+
+}
+.task.selected{
+
+    border:2px solid #4ea8ff;
+
+    box-shadow:
+    0 0 18px rgba(78,168,255,.45);
+
+}
+#toggleWeekBtn {
+
+    display:flex;
+
+    width:40px;
+
+    height:40px;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+#toggleWeekBtn {
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:40px;
+
+    height:40px;
+
+    padding:0;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:
+
+    rgba(255,255,255,0.65);
+
+    backdrop-filter:
+
+    blur(15px);
+
+    -webkit-backdrop-filter:
+
+    blur(15px);
+
+    font-size:20px;
+
+}
+
+
+}
+/* =================================
+   MaDenFlow - компактный вид недели
+================================= */
+
+
+#planner {
+
+    padding: 8px 10px 130px;
+
+    max-width: 600px;
+
+}
+
+
+
+.day {
+
+    padding: 6px 10px;
+
+    margin-bottom: 6px;
+
+    border-radius: 16px;
+
+}
+
+
+
+.day-title {
+
+    padding: 8px 10px;
+
+    font-size: 16px;
+
+    height: 38px;
+
+}
+
+
+
+.day-content {
+
+    margin-top: 5px;
+
+}
+
+
+
+.task {
+
+    padding: 6px 10px;
+
+    margin: 3px 0;
+
+    border-radius: 12px;
+
+}
+
+
+
+.task span {
+
+    font-size: 15px;
+
+}
+
+
+
+/* когда неделя свернута */
+
+.hidden {
+
+    display:none;
+
+}
 
 
 
