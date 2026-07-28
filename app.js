@@ -123,37 +123,34 @@ function renderWeek(){
 
 
 
-        section.innerHTML = `
+  section.innerHTML = `
 
 
-        <button class="day-title">
+<button class="day-title">
 
-        ${isToday ? "▼" : "▶"}
+${weekDays[i]}
+${date.getDate()}
 
-        ${weekDays[i]}
-        ${date.getDate()}
+<span class="day-status"
+data-date="${dateKey}">
+</span>
 
-        <span class="day-status"
-        data-date="${dateKey}">
-        </span>
+${isToday ? "⭐" : ""}
 
-        ${isToday ? "⭐ Сегодня" : ""}
-
-        </button>
-
+</button>
 
 
 
-        <div class="day-content ${isToday ? "" : "hidden"}">
+<div class="day-content">
 
 
-            <div class="tasks"></div>
+<div class="tasks"></div>
 
 
-        </div>
+</div>
 
 
-        `;
+`;
 
 
 
