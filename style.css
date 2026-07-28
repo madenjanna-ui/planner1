@@ -931,3 +931,16 @@ to {
     0 0 18px rgba(78,168,255,.45);
 
 }
+#toggleWeekBtn {
+
+    display:flex;
+
+    width:40px;
+
+    height:40px;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
