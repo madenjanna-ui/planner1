@@ -878,3 +878,142 @@ function refreshWeek(){
 renderWeek();
 
 refreshWeek();
+// =====================================
+// Повторное подключение кнопок
+// =====================================
+
+
+document
+.getElementById("prevWeek")
+.onclick = function(){
+
+
+    currentDate.setDate(
+        currentDate.getDate() - 7
+    );
+
+
+    renderWeek();
+
+
+};
+
+
+
+
+document
+.getElementById("nextWeek")
+.onclick = function(){
+
+
+    currentDate.setDate(
+        currentDate.getDate() + 7
+    );
+
+
+    renderWeek();
+
+
+};
+
+
+
+
+document
+.getElementById("todayBtn")
+.onclick = function(){
+
+
+    currentDate =
+    new Date();
+
+
+    renderWeek();
+
+
+};
+
+
+
+
+
+// =====================================
+// Добавление задачи
+// =====================================
+
+
+document
+.getElementById("addTaskBtn")
+.onclick=function(){
+
+
+    if(!selectedDate){
+
+
+        alert(
+            "Сначала выберите день"
+        );
+
+
+        return;
+
+    }
+
+
+
+    document
+    .getElementById("taskModal")
+    .classList
+    .remove("hidden");
+
+
+};
+
+
+
+
+
+document
+.getElementById("saveTaskBtn")
+.onclick=function(){
+
+
+    let input =
+    document.getElementById("newTaskInput");
+
+
+    let text =
+    input.value.trim();
+
+
+
+    if(text===""){
+
+        return;
+
+    }
+
+
+
+    addTask(
+        selectedDate,
+        text
+    );
+
+
+
+    input.value="";
+
+
+
+    document
+    .getElementById("taskModal")
+    .classList
+    .add("hidden");
+
+
+
+    renderWeek();
+
+
+};
