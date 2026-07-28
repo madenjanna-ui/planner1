@@ -18,11 +18,8 @@ const weekDays = [
 
 let currentDate = new Date();
 
-let weekCollapsed = false;
-
-
-// выбранный день для добавления задачи
 let selectedDate = null;
+
 let selectedTask = null;
 
 
@@ -86,7 +83,6 @@ function renderWeek(){
 
 
 
-
     for(let i = 0; i < 7; i++){
 
 
@@ -126,6 +122,7 @@ function renderWeek(){
 
 
 
+
         section.innerHTML = `
 
 
@@ -135,7 +132,10 @@ function renderWeek(){
 
         ${weekDays[i]}
         ${date.getDate()}
-<span class="day-status" data-date="${dateKey}"></span>
+
+        <span class="day-status"
+        data-date="${dateKey}">
+        </span>
 
         ${isToday ? "⭐ Сегодня" : ""}
 
@@ -162,7 +162,6 @@ function renderWeek(){
 
 
 
-
         if(typeof loadTasks === "function"){
 
 
@@ -175,14 +174,14 @@ function renderWeek(){
         }
 
 
-
     }
 
-activateDays();
 
-updateDayStatus();
 
-applyWeekState();
+    activateDays();
+
+    updateDayStatus();
+
 
 }
 
@@ -264,8 +263,7 @@ function activateDays(){
 
 
 
-// нижняя кнопка добавить
-
+// Добавить задачу
 
 document
 .getElementById("addTaskBtn")
@@ -274,9 +272,7 @@ document
 
     if(!selectedDate){
 
-
         alert("Сначала выберите день");
-
 
         return;
 
@@ -300,8 +296,7 @@ document
 
 
 
-// сохранить задачу
-
+// Сохранить задачу
 
 document
 .getElementById("saveTaskBtn")
@@ -318,10 +313,8 @@ document
 
 
 
-    if(text === ""){
-
+    if(text===""){
         return;
-
     }
 
 
@@ -337,7 +330,7 @@ document
 
 
 
-    input.value = "";
+    input.value="";
 
 
 
@@ -357,8 +350,7 @@ document
 
 
 
-// отмена
-
+// Отмена
 
 document
 .getElementById("cancelTaskBtn")
@@ -381,8 +373,7 @@ document
 
 
 
-// переключение недель
-
+// Неделя назад
 
 document
 .getElementById("prevWeek")
@@ -405,6 +396,10 @@ document
 
 
 
+
+
+// Неделя вперёд
+
 document
 .getElementById("nextWeek")
 .onclick=function(){
@@ -426,6 +421,10 @@ document
 
 
 
+
+
+// Сегодня
+
 document
 .getElementById("todayBtn")
 .onclick=function(){
@@ -439,20 +438,11 @@ document
 
 
 };
-const toggleButton =
-document.getElementById("toggleWeekBtn");
 
-if(toggleButton){
 
-    toggleButton.addEventListener("click", function(){
-       console.log("Кнопка недели нажата");
-        weekCollapsed = !weekCollapsed;
 
-        applyWeekState();
 
-    });
 
-}
 
 
 
@@ -470,11 +460,10 @@ function updateDayStatus(){
 
 
 
-        if(!tasks[date] || tasks[date].length === 0){
+        if(!tasks[date] || tasks[date].length===0){
 
 
-            status.textContent = "⚪";
-
+            status.textContent="⚪";
 
             return;
 
@@ -490,20 +479,8 @@ function updateDayStatus(){
 
 
 
-        if(allDone){
-
-
-            status.textContent = "🟢";
-
-
-        }
-        else{
-
-
-            status.textContent = "🟡";
-
-
-        }
+        status.textContent =
+        allDone ? "🟢" : "🟡";
 
 
     });
@@ -511,7 +488,15 @@ function updateDayStatus(){
 
 }
 
-// удаление задачи
+
+
+
+
+
+
+
+
+// Удаление задачи
 
 document
 .getElementById("deleteTaskBtn")
@@ -540,7 +525,7 @@ document
 
 
 
-    selectedTask = null;
+    selectedTask=null;
 
 
 
@@ -548,60 +533,36 @@ document
 
 
 };
-const header =
-document.querySelector(".glass-header");
 
 
-window.addEventListener("scroll",()=>{
-
-    if(window.scrollY>40){
-
-        header.classList.add("compact");
-
-    }else{
-
-        header.classList.remove("compact");
-
-    }
-
-});
-function applyWeekState(){
-
-    document
-    .querySelectorAll(".day-content")
-    .forEach(content=>{
 
 
-        if(weekCollapsed){
-
-            content.classList.add("hidden");
-
-        }
-        else{
-
-            content.classList.remove("hidden");
-
-        }
 
 
-    });
 
 
-    let button =
-    document.getElementById("toggleWeekBtn");
+
+// Кнопка ▼ пока только проверка
+
+const toggleButton =
+document.getElementById("toggleWeekBtn");
 
 
-    if(button){
+if(toggleButton){
 
-        button.textContent =
-        weekCollapsed ? "▲" : "▼";
+    toggleButton.onclick=function(){
 
-    }
+        console.log("Кнопка сворачивания нажата");
+
+    };
 
 }
-console.log("До запуска renderWeek");
 
-renderWeek();
 
-console.log("После renderWeek");
+
+
+
+
+
+
 renderWeek();
