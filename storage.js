@@ -152,3 +152,12 @@ function loadTasks(date, container){
 
 
 }
+if(tasks[date].length > 4){
+
+    container.classList.add("two-columns");
+
+}else{
+
+    container.classList.remove("two-columns");
+
+}
