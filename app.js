@@ -534,4 +534,21 @@ document
 
 
 };
+const header =
+document.querySelector(".glass-header");
+
+
+window.addEventListener("scroll",()=>{
+
+    if(window.scrollY>40){
+
+        header.classList.add("compact");
+
+    }else{
+
+        header.classList.remove("compact");
+
+    }
+
+});
 renderWeek();
