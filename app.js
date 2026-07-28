@@ -702,3 +702,179 @@ document
 
 
 };
+// =====================================
+// Статусы дней
+// =====================================
+
+
+function updateDayStatus(){
+
+
+    document
+    .querySelectorAll(".day-status")
+    .forEach(status=>{
+
+
+        let date =
+        status.dataset.date;
+
+
+
+        if(
+            !tasks[date] ||
+            tasks[date].length === 0
+        ){
+
+
+            status.textContent =
+            "⚪";
+
+
+            return;
+
+        }
+
+
+
+        let allDone =
+
+        tasks[date]
+        .every(item=>item.done);
+
+
+
+        if(allDone){
+
+
+            status.textContent =
+            "🟢";
+
+
+        } else {
+
+
+            status.textContent =
+            "🟡";
+
+
+        }
+
+
+
+    });
+
+
+}
+
+
+
+
+
+
+
+
+// =====================================
+// Сворачивание всей недели
+// =====================================
+
+
+const toggleWeekButton =
+
+document.getElementById(
+    "toggleWeekBtn"
+);
+
+
+
+if(toggleWeekButton){
+
+
+    toggleWeekButton.onclick=function(){
+
+
+
+        weekCollapsed =
+        !weekCollapsed;
+
+
+
+        document
+        .querySelectorAll(".day-content")
+        .forEach(content=>{
+
+
+
+            if(weekCollapsed){
+
+
+                content.classList
+                .add("hidden");
+
+
+            } else {
+
+
+                content.classList
+                .remove("hidden");
+
+
+            }
+
+
+        });
+
+
+
+        toggleWeekButton.textContent =
+
+        weekCollapsed
+        ?
+        "▲"
+        :
+        "▼";
+
+
+
+    };
+
+
+}
+
+
+
+
+
+
+
+
+// =====================================
+// После построения недели
+// =====================================
+
+
+function refreshWeek(){
+
+
+    activateDays();
+
+
+    activateTaskSelection();
+
+
+    updateDayStatus();
+
+
+}
+
+
+
+
+
+
+
+
+// первый запуск
+
+renderWeek();
+
+refreshWeek();
