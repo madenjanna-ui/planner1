@@ -502,3 +502,203 @@ if(toggleWeekBtn){
 
 }
 renderWeek();
+// =====================================
+// Навигация по неделям
+// =====================================
+
+
+document
+.getElementById("prevWeek")
+.onclick=function(){
+
+
+    currentDate.setDate(
+
+        currentDate.getDate() - 7
+
+    );
+
+
+    renderWeek();
+
+
+};
+
+
+
+
+
+
+
+document
+.getElementById("nextWeek")
+.onclick=function(){
+
+
+    currentDate.setDate(
+
+        currentDate.getDate() + 7
+
+    );
+
+
+    renderWeek();
+
+
+};
+
+
+
+
+
+
+
+document
+.getElementById("todayBtn")
+.onclick=function(){
+
+
+    currentDate =
+    new Date();
+
+
+    renderWeek();
+
+
+};
+
+
+
+
+
+
+
+// =====================================
+// Выбор задачи для удаления
+// =====================================
+
+
+function activateTaskSelection(){
+
+
+    document
+    .querySelectorAll(".task")
+    .forEach((task,index)=>{
+
+
+        task.onclick=function(e){
+
+
+            if(
+                e.target.tagName === "INPUT"
+            ){
+
+                return;
+
+            }
+
+
+
+            document
+            .querySelectorAll(".task")
+            .forEach(t=>{
+
+                t.classList.remove(
+                    "selected"
+                );
+
+            });
+
+
+
+            task.classList.add(
+                "selected"
+            );
+
+
+
+            let day =
+            task.closest(".day");
+
+
+
+            selectedTask = {
+
+
+                date:
+                day.dataset.date,
+
+
+                index:index
+
+
+            };
+
+
+
+        };
+
+
+    });
+
+
+}
+
+
+
+
+
+
+
+
+
+// =====================================
+// Корзина
+// =====================================
+
+
+document
+.getElementById("deleteTaskBtn")
+.onclick=function(){
+
+
+
+    if(!selectedTask){
+
+
+        alert(
+            "Выберите задачу"
+        );
+
+
+        return;
+
+    }
+
+
+
+
+    tasks[selectedTask.date]
+    .splice(
+
+        selectedTask.index,
+
+        1
+
+    );
+
+
+
+    saveTasks();
+
+
+
+    selectedTask = null;
+
+
+
+    renderWeek();
+
+
+
+};
