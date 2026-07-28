@@ -145,6 +145,8 @@ body {
 
     width:100%;
 
+    margin:0 auto;
+
 }
 
 
@@ -157,15 +159,15 @@ body {
 
     justify-content:center;
 
-    height:40px;
+    min-width:48px;
+
+    height:38px;
 
     padding:0 14px;
 
     border:none;
 
     border-radius:12px;
-
-    cursor:pointer;
 
 }
 
@@ -188,7 +190,7 @@ body {
 ========================== */
 
 
-#planner {
+#planner{
 
     max-width:700px;
 
@@ -771,45 +773,19 @@ modalOpen 0.25s ease;
 
 
 
-.modal-buttons {
-button {
-
-
-    font-family:'Nunito', sans-serif;
-
-
-    font-weight:700;
-
-
-}
+.modal-buttons{
 
     display:flex;
 
-
     gap:10px;
-
 
 }
 
+.modal-buttons button{
 
+    font-family:'Nunito', sans-serif;
 
-.modal-buttons button {
-
-
-    flex:1;
-
-
-    padding:10px;
-
-
-    border:none;
-
-
-    border-radius:12px;
-
-
-    cursor:pointer;
-
+    font-weight:700;
 
 }
 @keyframes modalOpen {
@@ -953,11 +929,5 @@ to {
 
     box-shadow:
     0 0 18px rgba(78,168,255,.45);
-
-}
-#planner {
-
-    padding-bottom:
-    90px;
 
 }
