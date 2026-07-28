@@ -1054,3 +1054,35 @@ to {
     display:none;
 
 }
+.glass-header {
+
+    padding: 6px 10px;
+
+}
+
+
+.logo {
+
+    font-size:20px;
+
+    margin-bottom:3px;
+
+}
+
+
+#weekTitle {
+
+    font-size:14px;
+
+    margin-bottom:4px;
+
+}
+
+
+.week-nav button {
+
+    height:34px;
+
+    min-width:38px;
+
+}
