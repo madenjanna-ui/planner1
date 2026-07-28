@@ -443,19 +443,20 @@ document
 
 
 };
-document
-.getElementById("toggleWeekBtn")
-.onclick=function(){
+const toggleButton =
+document.getElementById("toggleWeekBtn");
 
+if(toggleButton){
 
-    weekCollapsed =
-    !weekCollapsed;
+    toggleButton.addEventListener("click", function(){
+       console.log("Кнопка недели нажата");
+        weekCollapsed = !weekCollapsed;
 
+        applyWeekState();
 
-    applyWeekState();
+    });
 
-
-};
+}
 
 
 
