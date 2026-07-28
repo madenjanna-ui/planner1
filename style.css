@@ -151,65 +151,35 @@ body {
 
 .week-nav{
 
-    transition:.25s;
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    width:100%;
+
+    margin:8px auto 0;
 
 }
-.glass-header.compact .week-nav{
-
-    gap:6px;
-
-}
 
 
-.week-nav button,
-#prevWeek,
-#todayBtn,
-#nextWeek {
 
+.week-nav button{
 
-    min-width:45px;
+    min-width:48px;
 
-
-    padding:10px 15px;
-
+    height:38px;
 
     border:none;
 
+    border-radius:12px;
 
-
-    border-radius:15px;
-
-
-
-    cursor:pointer;
-
-
-
-    background:
-
-    rgba(255,255,255,0.55);
-
-
-
-    backdrop-filter:
-
-    blur(10px);
-
-
-
-    box-shadow:
-
-    0 5px 15px rgba(0,0,0,0.08);
-
-
-    font-size:15px;
-
+    padding:0 14px;
 
 }
-
-
-
-
 
 .week-nav button:hover {
 
