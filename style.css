@@ -1086,3 +1086,19 @@ to {
     min-width:38px;
 
 }
+.tasks.two-columns{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:6px 10px;
+
+}
+
+
+.tasks.two-columns .task{
+
+    margin:0;
+
+}
