@@ -599,4 +599,9 @@ function applyWeekState(){
     }
 
 }
+console.log("До запуска renderWeek");
+
+renderWeek();
+
+console.log("После renderWeek");
 renderWeek();
