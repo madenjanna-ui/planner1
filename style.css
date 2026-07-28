@@ -946,21 +946,33 @@ to {
 }
 #toggleWeekBtn {
 
-    display:flex !important;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
 
     width:40px;
 
     height:40px;
 
-    background:red !important;
+    padding:0;
 
-    color:white !important;
+    border:none;
 
-    border-radius:12px;
+    border-radius:50%;
 
-    align-items:center;
+    background:
 
-    justify-content:center;
+    rgba(255,255,255,0.65);
+
+    backdrop-filter:
+
+    blur(15px);
+
+    -webkit-backdrop-filter:
+
+    blur(15px);
 
     font-size:20px;
 
