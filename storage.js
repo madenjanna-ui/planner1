@@ -75,7 +75,15 @@ function loadTasks(date, container){
         return;
     }
 
+if(tasks[date].length > 4){
 
+    container.classList.add("two-columns");
+
+}else{
+
+    container.classList.remove("two-columns");
+
+}
     tasks[date].forEach((item,index)=>{
 
 
