@@ -192,7 +192,6 @@ ${isToday ? "⭐" : ""}
 
 function activateDays(){
 
-
     document
     .querySelectorAll(".day-title")
     .forEach(button=>{
@@ -205,32 +204,16 @@ function activateDays(){
             this.closest(".day");
 
 
-
             selectedDate =
             day.dataset.date;
 
 
-
-            let content =
-            this.nextElementSibling;
+        };
 
 
+    });
 
-            content.classList.toggle("hidden");
-
-
-
-            if(content.classList.contains("hidden")){
-
-
-                this.textContent =
-                this.textContent.replace(
-                    "▼",
-                    "▶"
-                );
-
-
-            }
+}
             else{
 
 
