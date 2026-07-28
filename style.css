@@ -980,3 +980,77 @@ to {
 
 
 }
+/* =================================
+   MaDenFlow - компактный вид недели
+================================= */
+
+
+#planner {
+
+    padding: 8px 10px 130px;
+
+    max-width: 600px;
+
+}
+
+
+
+.day {
+
+    padding: 6px 10px;
+
+    margin-bottom: 6px;
+
+    border-radius: 16px;
+
+}
+
+
+
+.day-title {
+
+    padding: 8px 10px;
+
+    font-size: 16px;
+
+    height: 38px;
+
+}
+
+
+
+.day-content {
+
+    margin-top: 5px;
+
+}
+
+
+
+.task {
+
+    padding: 6px 10px;
+
+    margin: 3px 0;
+
+    border-radius: 12px;
+
+}
+
+
+
+.task span {
+
+    font-size: 15px;
+
+}
+
+
+
+/* когда неделя свернута */
+
+.hidden {
+
+    display:none;
+
+}
