@@ -5,7 +5,11 @@ console.log("MaDenFlow запущен 🚀");
 
 const planner = document.getElementById("planner");
 const weekTitle = document.getElementById("weekTitle");
+const toggleWeekBtn =
+document.getElementById("toggleWeekBtn");
 
+
+let weekCollapsed = false;
 
 const weekDays = [
     "Понедельник",
